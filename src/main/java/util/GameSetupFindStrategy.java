@@ -3,7 +3,7 @@ package util;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public final class GameSetupStrategy implements ConfigStrategy {
+public final class GameSetupFindStrategy implements ConfigFindStrategy {
     @Override
     public Path preferredPath() {
         return Paths.get("config/GameSetUp.json");

@@ -2,7 +2,7 @@ package util;
 
 import java.nio.file.Path;
 
-public interface ConfigStrategy {
+public interface ConfigFindStrategy {
     /** 首选路径（通常放在某个子目录） */
     Path preferredPath();
 

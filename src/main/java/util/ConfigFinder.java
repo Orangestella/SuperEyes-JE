@@ -14,13 +14,12 @@ public final class ConfigFinder {
     /** 缓存目录：根目录/.cache/ */
     private static final Path CACHE_DIR = Paths.get(".cache");
     private static final Object CACHE_DIR_LOCK = new Object();
-
     /**
      * 主 API：带缓存的 locate
      * 1. 先看缓存文件是否存在 → 路径是否有效
      * 2. 无效或缺失 → 重新 locate → 写入缓存
      */
-    public static @NotNull Path locate(@NotNull ConfigStrategy strategy) throws IOException {
+    public static @NotNull Path locate(@NotNull ConfigFindStrategy strategy) throws IOException {
         Path cacheFile = cacheFile(strategy.fileName());
         // 读缓存
         if (Files.isRegularFile(cacheFile)) {
@@ -44,7 +43,7 @@ public final class ConfigFinder {
     }
 
     /* ---------------- 原 locate 逻辑，去掉缓存 ---------------- */
-    private static Path locateWithoutCache(@NotNull ConfigStrategy strategy) throws IOException {
+    private static Path locateWithoutCache(@NotNull ConfigFindStrategy strategy) throws IOException {
         // 1. 首选路径
         Path p = strategy.preferredPath();
         if (Files.exists(p)) {
